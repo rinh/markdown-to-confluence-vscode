@@ -261,6 +261,10 @@ export class AtlassianWikiMarkupRenderer extends Renderer {
     language: string | undefined,
     _isEscaped: boolean
   ): string {
+    if( language == "puml") {
+      return this.plantuml(code);
+    }
+
     const theme =
       (this.rendererOptions &&
         this.rendererOptions.codeBlock &&
@@ -311,4 +315,11 @@ export class AtlassianWikiMarkupRenderer extends Renderer {
       .join("|");
     return `{code:${paramsString}}\n${code}\n{code}\n\n`;
   }
+
+
+  public plantuml(body: string): string {
+    return `{plantuml}\n${body}\n{plantuml}\n\n`;
+  }
+
+
 }

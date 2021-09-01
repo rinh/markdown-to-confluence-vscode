@@ -404,9 +404,26 @@ actor Main
 
 `;
         const rendered = markdownToAtlassianWikiMarkup(markdown);
+        expect(rendered).toBe(expected); 
+
+      }); 
+    });
+
+
+    describe("when plantuml language", () => {
+      it("should render sandwiched by '{plantuml}' with none parameter", () => {
+        const markdown = `
+\`\`\`puml
+\`\`\`
+`;
+        const expected = `{plantuml}\n\n{plantuml}\n\n`;
+        const rendered = markdownToAtlassianWikiMarkup(markdown);
         expect(rendered).toBe(expected);
       });
     });
+
+
+
   });
 });
 
